@@ -1,58 +1,52 @@
 {
-  "name": "angular2-datetimepicker",
-  "version": "1.1.1",
-  "description": "Angular 2 or 4 datetime picker component",
-  "keywords": [
-    "angular2 datepicker",
-    "angular2 datetimepicker",
-    "angular4 datepicker",
-    "angular4 datetimepicker"
+  "_args": [
+    [
+      "angular2-datetimepicker@1.1.1",
+      "D:\\Quanode\\Quanode\\smartdoc\\angular"
+    ]
   ],
-  "license": "MIT",
+  "_from": "angular2-datetimepicker@1.1.1",
+  "_id": "angular2-datetimepicker@1.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-acTZkcSKYNq4CiDYfoU5bBhfH0I=",
+  "_location": "/angular2-datetimepicker",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "angular2-datetimepicker@1.1.1",
+    "name": "angular2-datetimepicker",
+    "escapedName": "angular2-datetimepicker",
+    "rawSpec": "1.1.1",
+    "saveSpec": null,
+    "fetchSpec": "1.1.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular2-datetimepicker/-/angular2-datetimepicker-1.1.1.tgz",
+  "_spec": "1.1.1",
+  "_where": "D:\\Quanode\\Quanode\\smartdoc\\angular",
   "angular-cli": {},
-  "author":"Pradeep Terli",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "e2e": "ng e2e",
-    "build": "npm run build:esm && npm run build:umd && gulp copy",
-    "build:esm": "gulp inline-templates && npm run ngcompile",
-    "build:esm:watch": "gulp build:esm:watch",
-    "build:umd": "webpack --config webpack-umd.config.ts",
-    "build:umd:watch": "npm run build:umd -- --watch",
-    "build:watch": "concurrently --raw \"npm run build:umd:watch\" \"npm run build:esm:watch\"",
-    "ci": "npm run lint && npm run test && npm run build && npm run docs",
-    "clean:all": "npm run clean:tmp && rimraf node_modules",
-    "clean:tmp": "rimraf coverage dist tmp docs",
-    "codecov": "cat coverage/lcov.info | codecov",
-    "docs": "compodoc -p tsconfig.json -d docs --disableCoverage --disablePrivateOrInternalSupport",
-    "explorer": "source-map-explorer ./dist/index.umd.js",
-    "gh-pages": "rimraf docs && npm run docs && gh-pages -d docs",
-    "lint": "npm run tslint 'src/**/*.ts'",
-    "ngcompile": "node_modules/.bin/ngc -p tsconfig-aot.json",
-    "postversion": "git push && git push --tags",
-    "prebuild": "rimraf dist tmp",
-    "prebuild:watch": "rimraf dist tmp",
-    "prepublishOnly": "npm run ci",
-    "preversion": "npm run ci",
-    "test": "karma start",
-    "test:watch": "karma start --auto-watch --no-single-run",
-    "tslint": "tslint",
-    "github-pages":"ng build --base-href /angular2-datetimepicker/"
+  "author": {
+    "name": "Pradeep Terli"
   },
-  "private": false,
+  "bugs": {
+    "url": "https://github.com/CuppaLabs/angular2-datetimepicker/issues"
+  },
   "dependencies": {
-    "font-awesome":"*"
+    "font-awesome": "*"
   },
+  "description": "Angular 2 or 4 datetime picker component",
   "devDependencies": {
-"@angular/common": "^4.0.0",
+    "@angular/cli": "^1.3.2",
+    "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
-    "@angular/cli": "^1.3.2",
     "@angular/core": "^4.0.0",
-     "@angular/forms": "^4.0.0",
+    "@angular/forms": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",    
+    "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@compodoc/compodoc": "^1.0.0-beta.9",
     "@types/jasmine": "^2.5.47",
@@ -68,7 +62,7 @@
     "css-loader": "^0.28.1",
     "gh-pages": "^1.0.0",
     "gulp": "^3.9.1",
-    "gulp-copy":"^1.0.1",
+    "gulp-copy": "^1.0.1",
     "gulp-inline-ng2-template": "^4.0.0",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine-core": "^2.6.1",
@@ -80,12 +74,12 @@
     "karma-mocha-reporter": "^2.2.3",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
-    "ng2-adsense":"*",
+    "ng2-adsense": "*",
     "node-sass": "^4.5.2",
+    "protractor": "*",
     "raw-loader": "^0.5.1",
     "rimraf": "2.6.1",
     "rxjs": "^5.3.1",
-    "protractor":"*",
     "sass-loader": "^6.0.5",
     "source-map-explorer": "^1.3.3",
     "to-string-loader": "^1.1.5",
@@ -97,11 +91,48 @@
     "webpack-rxjs-externals": "^1.0.0",
     "zone.js": "^0.8.10"
   },
-    "repository": {
+  "homepage": "https://github.com/CuppaLabs/angular2-datetimepicker#readme",
+  "keywords": [
+    "angular2 datepicker",
+    "angular2 datetimepicker",
+    "angular4 datepicker",
+    "angular4 datetimepicker"
+  ],
+  "license": "MIT",
+  "name": "angular2-datetimepicker",
+  "private": false,
+  "repository": {
     "type": "git",
-    "url": "https://github.com/CuppaLabs/angular2-datetimepicker"
+    "url": "git+https://github.com/CuppaLabs/angular2-datetimepicker.git"
   },
-  "bugs": {
-    "url": "https://github.com/CuppaLabs/angular2-datetimepicker/issues"
-  }
+  "scripts": {
+    "build": "npm run build:esm && npm run build:umd && gulp copy",
+    "build:esm": "gulp inline-templates && npm run ngcompile",
+    "build:esm:watch": "gulp build:esm:watch",
+    "build:umd": "webpack --config webpack-umd.config.ts",
+    "build:umd:watch": "npm run build:umd -- --watch",
+    "build:watch": "concurrently --raw \"npm run build:umd:watch\" \"npm run build:esm:watch\"",
+    "ci": "npm run lint && npm run test && npm run build && npm run docs",
+    "clean:all": "npm run clean:tmp && rimraf node_modules",
+    "clean:tmp": "rimraf coverage dist tmp docs",
+    "codecov": "cat coverage/lcov.info | codecov",
+    "docs": "compodoc -p tsconfig.json -d docs --disableCoverage --disablePrivateOrInternalSupport",
+    "e2e": "ng e2e",
+    "explorer": "source-map-explorer ./dist/index.umd.js",
+    "gh-pages": "rimraf docs && npm run docs && gh-pages -d docs",
+    "github-pages": "ng build --base-href /angular2-datetimepicker/",
+    "lint": "npm run tslint 'src/**/*.ts'",
+    "ng": "ng",
+    "ngcompile": "ngc -p tsconfig-aot.json",
+    "postversion": "git push && git push --tags",
+    "prebuild": "rimraf dist tmp",
+    "prebuild:watch": "rimraf dist tmp",
+    "prepublishOnly": "npm run ci",
+    "preversion": "npm run ci",
+    "start": "ng serve",
+    "test": "karma start",
+    "test:watch": "karma start --auto-watch --no-single-run",
+    "tslint": "tslint"
+  },
+  "version": "1.1.1"
 }

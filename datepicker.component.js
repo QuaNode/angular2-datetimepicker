@@ -265,18 +265,20 @@ var DatePicker = /** @class */ (function () {
         this.popover = false;
         this.onDateSelect.emit(this.date);
     };
-    DatePicker.prototype.detectPosition = function () {
+    DatePicker.prototype.detectPosition = function (event) {
         var dropupHeight = this.dropupHeight || 425;
         if (this.relativeToId) {
             var relativeTarget = document.getElementById(this.relativeToId);
             var relativeTargetTop = relativeTarget.getBoundingClientRect().top
         }
-        var dateField = event.target.parentNode;
+        if(event.target.className == "fa fa-calendar") var dateField = event.target.parentNode;
+        else dateField = event.target;
         var popover = Array.from(dateField.parentNode.children).find( e => e.classList.contains("wc-date-popover"));
-        var dateFieldOffset = (relativeTargetTop || dateField.getBoundingClientRect().top) + window.pageYOffset;
+        var elementViewPortTop = relativeTargetTop || dateField.getBoundingClientRect().top
+        var dateFieldOffset = elementViewPortTop + window.pageYOffset;
         var spaceUp = (dateFieldOffset - dateField.clientHeight - dropupHeight) - window.pageYOffset;
         var spaceDown = window.pageYOffset + window.innerHeight - (dateFieldOffset + dropupHeight);
-        if ((spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) || (spaceDown < 0 && spaceUp < 0) && !popover.classList.contains('dropup'))
+        if ((spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) || (spaceDown < 0 && spaceUp < 0) && relativeTargetTop > dropupHeight && !popover.classList.contains('dropup'))
             popover.classList.add('dropup');
         else if(popover.classList.contains('dropup')) 
             popover.classList.remove('dropup');

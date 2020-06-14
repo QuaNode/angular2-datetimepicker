@@ -278,7 +278,7 @@ var DatePicker = /** @class */ (function () {
         var dateFieldOffset = elementViewPortTop + window.pageYOffset;
         var spaceUp = (dateFieldOffset - dateField.clientHeight - dropupHeight) - window.pageYOffset;
         var spaceDown = window.pageYOffset + window.innerHeight - (dateFieldOffset + dropupHeight);
-        if ((spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) || (spaceDown < 0 && spaceUp < 0) && relativeTargetTop > dropupHeight && !popover.classList.contains('dropup'))
+        if (((spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) || (spaceDown < 0 && spaceUp < 0)) && elementViewPortTop > dropupHeight && !popover.classList.contains('dropup'))
             popover.classList.add('dropup');
         else if(popover.classList.contains('dropup')) 
             popover.classList.remove('dropup');

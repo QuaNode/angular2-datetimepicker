@@ -268,22 +268,54 @@ var DatePicker = /** @class */ (function () {
     DatePicker.prototype.detectPosition = function (event) {
         if (this.settings.timePicker && this.settings.bigBanner && this.settings.format == 'h:mm a') return;
         var dropupHeight = this.dropupHeight || 425;
+        var dropupWidth = this.dropupWidth || 250;
         if (this.relativeToId) {
             var relativeTarget = document.getElementById(this.relativeToId);
-            var relativeTargetTop = relativeTarget.getBoundingClientRect().top
+            var relativeTargetTop = relativeTarget.getBoundingClientRect().top;
         }
-        if(event.target.className == "fa fa-calendar") var dateField = event.target.parentNode;
-        else dateField = event.target;
+        var calendarIconWidth = 30;
+        if(event.target.className == "fa fa-calendar") {
+            var dateField = event.target.parentNode;
+            if (event.target.parentNode.clientWidth > 30) calendarIconWidth = event.target.parentNode.clientWidth;
+        }
+        else {
+            dateField = event.target;
+            if (event.target.clientWidth > 30) calendarIconWidth = event.target.clientWidth;
+        }
+        var extraWidth = calendarIconWidth?calendarIconWidth:0;
         var popover = Array.from(dateField.parentNode.children).find( e => e.classList.contains("wc-date-popover"));
-        var elementViewPortTop = relativeTargetTop || dateField.getBoundingClientRect().top
+        var elementViewPortTop = dateField.getBoundingClientRect().top || relativeTargetTop;
         var dateFieldOffset = elementViewPortTop + window.pageYOffset;
         var spaceUp = (dateFieldOffset - dateField.clientHeight - dropupHeight) - window.pageYOffset;
         var spaceDown = window.pageYOffset + window.innerHeight - (dateFieldOffset + dropupHeight);
+        var relativeField = event.target;
+        var calendarField = this.relativeToId?relativeField:dateField;
+        var dateFieldPosition = calendarField.style.position;
+        var workingRect = calendarField.getBoundingClientRect().left;
+        calendarField.style.position = "fixed"
+        var spaceLeft = (workingRect > calendarField.offsetLeft) ? workingRect: calendarField.offsetLeft;
+        var spaceRight = document.body.getBoundingClientRect().width - spaceLeft;
+        calendarField.style.position = dateFieldPosition;
+        if (popover.classList.contains('dropleft') || popover.classList.contains('dropright'))
+                    popover.classList.remove("dropright", "dropleft");
         if (((spaceDown < 0 && (spaceUp >= 0 || spaceUp > spaceDown)) || (spaceDown < 0 && spaceUp < 0)) && dateFieldOffset > dropupHeight) {
             if(!popover.classList.contains('dropup')) popover.classList.add('dropup');
+            if(elementViewPortTop < dropupHeight && (dropupWidth + extraWidth) < spaceRight) {
+                popover.classList.add('dropright');
+            }
+            else if(elementViewPortTop < dropupHeight && dropupWidth < spaceLeft) {
+                popover.classList.add('dropleft');
+            }
         }    
-        else if(popover.classList.contains('dropup')) 
-            popover.classList.remove('dropup');
+        else {
+            if(popover.classList.contains('dropup')) popover.classList.remove('dropup');
+            if(spaceDown < 0 && (dropupWidth + extraWidth) < spaceRight) {
+                popover.classList.add('dropright');
+            }
+            else if(spaceDown < 0 && dropupWidth < spaceLeft) {
+                popover.classList.add('dropleft');
+            }
+        }
     };
     DatePicker.decorators = [
         { type: Component, args: [{

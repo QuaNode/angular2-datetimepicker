@@ -266,13 +266,6 @@ var DatePicker = /** @class */ (function () {
         this.onDateSelect.emit(this.date);
     };
     DatePicker.prototype.detectPosition = function (event) {
-        if (this.settings.timePicker && this.settings.bigBanner && this.settings.format == 'h:mm a') return;
-        var dropupHeight = this.dropupHeight || 425;
-        var dropupWidth = this.dropupWidth || 250;
-        if (this.relativeToId) {
-            var relativeTarget = document.getElementById(this.relativeToId);
-            var relativeTargetTop = relativeTarget.getBoundingClientRect().top;
-        }
         var calendarIconWidth = 30;
         if(event.target.className == "fa fa-calendar" || event.target.className == "date-calendar") {
             var dateField = event.target.parentNode;
@@ -282,8 +275,17 @@ var DatePicker = /** @class */ (function () {
             dateField = event.target;
             if (event.target.clientWidth > 30) calendarIconWidth = event.target.clientWidth;
         }
-        var extraWidth = calendarIconWidth?calendarIconWidth:0;
         var popover = Array.from(dateField.parentNode.children).find( e => e.classList.contains("wc-date-popover"));
+        if (popover.classList.contains('dropup') || popover.classList.contains('dropleft') || popover.classList.contains('dropright'))
+            popover.classList.remove("dropup", "dropright", "dropleft");
+        if (!this.settings.timePicker && !this.settings.bigBanner && this.settings.format !== 'h:mm a') return;
+        var extraWidth = calendarIconWidth?calendarIconWidth:0;
+        var dropupHeight = this.dropupHeight || 425;
+        var dropupWidth = this.dropupWidth || 250;
+        if (this.relativeToId) {
+            var relativeTarget = document.getElementById(this.relativeToId);
+            var relativeTargetTop = relativeTarget.getBoundingClientRect().top;
+        }
         var elementViewPortTop = dateField.getBoundingClientRect().top || relativeTargetTop;
         var dateFieldOffset = elementViewPortTop + window.pageYOffset;
         var spaceUp = (dateFieldOffset - dateField.clientHeight - dropupHeight) - window.pageYOffset;
@@ -316,6 +318,7 @@ var DatePicker = /** @class */ (function () {
                 popover.classList.add('dropleft');
             }
         }
+
     };
     DatePicker.decorators = [
         { type: Component, args: [{
